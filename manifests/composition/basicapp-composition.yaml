@@ -1,0 +1,54 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: xbasicapp-aws
+spec:
+  compositeTypeRef:
+    apiVersion: example.com/v1alpha1
+    kind: XBasicApp
+  mode: Pipeline
+  pipeline:
+    - step: create-ec2
+      functionRef:
+        name: function-patch-and-transform
+      input:
+        apiVersion: pt.fn.crossplane.io/v1beta1
+        kind: Resources
+        resources:
+          - name: instance1
+            base:
+              apiVersion: ec2.aws.upbound.io/v1beta1
+              kind: Instance
+              spec:
+                forProvider:
+                  ami: ami-dummy
+                  instanceType: t3.micro
+                  region: us-east-1
+                providerConfigRef:
+                  name: default
+            patches:
+              - type: FromCompositeFieldPath
+                fromFieldPath: spec.instanceType
+                toFieldPath: spec.forProvider.instanceType
+              - type: FromCompositeFieldPath
+                fromFieldPath: spec.region
+                toFieldPath: spec.forProvider.region
+
+          - name: instance2
+            base:
+              apiVersion: ec2.aws.upbound.io/v1beta1
+              kind: Instance
+              spec:
+                forProvider:
+                  ami: ami-dummy
+                  instanceType: t3.micro
+                  region: us-east-1
+                providerConfigRef:
+                  name: default
+            patches:
+              - type: FromCompositeFieldPath
+                fromFieldPath: spec.instanceType
+                toFieldPath: spec.forProvider.instanceType
+              - type: FromCompositeFieldPath
+                fromFieldPath: spec.region
+                toFieldPath: spec.forProvider.region

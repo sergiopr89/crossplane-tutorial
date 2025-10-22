@@ -1,0 +1,32 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: create-infra
+spec:
+  compositeTypeRef:
+    apiVersion: example.crossplane.io/v1
+    kind: myXRD
+  mode: Pipeline
+  pipeline:
+  - step: create-infra
+    functionRef:
+      name: function-replace-field
+    input:
+      apiVersion: pt.fn.crossplane.io/v1beta1
+      kind: Resources
+      resources:
+        - name: instance1
+          base:
+            apiVersion: ec2.aws.upbound.io/v1beta1
+            kind: Instance
+            spec:
+              forProvider:
+                ami: ami-dummy
+                instanceType: t3.micro
+                region: us-east-1
+              providerConfigRef:
+                name: default
+      replaces:
+        - fromPath: spec.name
+          pattern: "-deploy.*"
+          value: "-blue-deployment"

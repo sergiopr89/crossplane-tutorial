@@ -1,0 +1,14 @@
+apiVersion: elb.aws.upbound.io/v1beta1
+kind: ELB
+metadata:
+  name: elb-test
+spec:
+  forProvider:
+    region: us-east-1
+    listener:
+      - lbProtocol: http
+        lbPort: 80
+        instancePort: 80
+        instanceProtocol: https
+  providerConfigRef:
+    name: default

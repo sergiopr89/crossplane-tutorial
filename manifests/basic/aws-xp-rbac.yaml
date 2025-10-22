@@ -1,0 +1,15 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: aws-upbound-managed-resources
+  labels:
+    rbac.crossplane.io/aggregate-to-crossplane: "true"
+rules:
+- apiGroups:
+  - ec2.aws.upbound.io
+  - elb.aws.upbound.io
+  - s3.aws.upbound.io
+  resources:
+  - '*'
+  verbs:
+  - '*'

@@ -1,0 +1,7 @@
+apiVersion: example.crossplane.io/v1
+kind: myXRD
+metadata:
+  name: example-infra
+spec:
+  region: us-east-2
+  name: some-deployment

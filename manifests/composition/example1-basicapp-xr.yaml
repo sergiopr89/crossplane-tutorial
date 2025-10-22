@@ -1,0 +1,7 @@
+apiVersion: example.com/v1alpha1
+kind: XBasicApp
+metadata:
+  name: webapp-example1
+spec:
+  instanceType: t3.nano
+  region: us-east-1
