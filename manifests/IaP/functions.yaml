@@ -1,0 +1,6 @@
+apiVersion: pkg.crossplane.io/v1
+kind: Function
+metadata:
+  name: upbound-function-openai
+spec:
+  package: xpkg.upbound.io/upbound/function-openai:v0.3.0
