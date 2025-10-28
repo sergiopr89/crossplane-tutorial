@@ -1,9 +1,9 @@
 apiVersion: v1
-  kind: Secret
-  metadata:
+kind: Secret
+metadata:
     name: gpt
     namespace: crossplane-system
-  data:
+data:
     OPENAI_API_KEY: ${OPENAI_API_KEY_B64}
     # OPENAI_BASE_URL: ${OPENAI_BASE_URL_B64}
     # Optional: Use custom OpenAI-compatible endpoint
