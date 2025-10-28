@@ -5,3 +5,4 @@ metadata:
 spec:
   instanceType: t3.nano
   region: us-east-1
+  ami: ami-dummy

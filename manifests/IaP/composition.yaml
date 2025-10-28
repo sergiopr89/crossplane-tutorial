@@ -79,9 +79,12 @@ spec:
         Additional input is provided here:
 
         Use the resource in the <composite> tag to template an EC2 instance: https://marketplace.upbound.io/providers/upbound/provider-aws-ec2/v2.1.1 
+        with the apiGroup ec2.aws.upbound.io/v1beta1.
         Use the value at JSON path .spec.instanceType to set the Instance
         type. Use the value at JSON path .spec.region to set its
-        region.
+        region. Use the value at JSON path .spec.ami to set its
+        ami. Hardcode the value "default" for spec.providerConfigRef.name
+        in the composition.
 
         You have to create a pair of them with names: instance1 and instance2.
     credentials:

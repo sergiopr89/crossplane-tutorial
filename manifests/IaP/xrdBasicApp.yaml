@@ -25,4 +25,7 @@ spec:
               region:
                 type: string
                 default: us-east-1
+              ami:
+                type: string
+                default: ami-dummy
             required: []
